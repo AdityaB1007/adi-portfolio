@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1530" role="img" aria-labelledby="title desc"><title id="title">Real estate operations architecture</title><desc id="desc">Buildium syncs to a Google Workspace hub containing Leasing and Units, Applicant Pipeline, and Late Rent Ledger. Leasing and Units syncs directly to Jira. Applicant Pipeline dispatches contracts to PandaDoc. Executed PDFs are archived in Google Drive, with file links attached to Jira.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#c7ed8a"/></marker></defs><rect width="1100" height="1530" fill="#172013"/>
+<rect x="240" y="20" width="620" height="245" rx="6" fill="#202c19" stroke="#809263"/>
+<text x="550.0" y="52" font-family="Arial, sans-serif" font-size="20" fill="#d3f79c" text-anchor="middle" font-weight="700">PROPERTY MANAGEMENT ERP</text>
+<text x="550.0" y="78" font-family="Arial, sans-serif" font-size="18" fill="#d6e1c8" text-anchor="middle" font-weight="400">(Buildium)</text>
+<text x="262" y="114" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Property &amp; Unit Directory</text>
+<text x="262" y="144" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Tenant &amp; Lease Agreements</text>
+<text x="262" y="174" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Approved Rental Applications</text>
+<text x="262" y="204" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Maintenance &amp; Resident Requests</text>
+<text x="262" y="234" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• General Ledger Balances &amp; Late Fees</text>
+<path d="M550 265V340" stroke="#c7ed8a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<text x="575" y="306" font-family="Arial, sans-serif" font-size="16" fill="#c7ed8a" text-anchor="start" font-weight="400">Automated Background Sync</text>
+<rect x="20" y="340" width="1060" height="250" rx="6" fill="#1c2717" stroke="#a1bb7b"/>
+<text x="550" y="377" font-family="Arial, sans-serif" font-size="22" fill="#d3f79c" text-anchor="middle" font-weight="700">CENTRAL OPERATIONS HUB (GOOGLE WORKSPACE)</text>
+<rect x="40" y="405" width="330" height="165" rx="6" fill="#202c19" stroke="#809263"/>
+<text x="205.0" y="437" font-family="Arial, sans-serif" font-size="20" fill="#d3f79c" text-anchor="middle" font-weight="700">Leasing &amp; Units</text>
+<text x="62" y="463" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Automated Unit Match</text>
+<text x="62" y="493" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Lease Expiry Tracker</text>
+<text x="62" y="523" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Smart Deduplication</text>
+<rect x="385" y="405" width="330" height="165" rx="6" fill="#202c19" stroke="#809263"/>
+<text x="550.0" y="437" font-family="Arial, sans-serif" font-size="20" fill="#d3f79c" text-anchor="middle" font-weight="700">Applicant Pipeline</text>
+<text x="407" y="463" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Roommate Grouping</text>
+<text x="407" y="493" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Custom Lease Terms</text>
+<text x="407" y="523" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• 1-Click Action Hub</text>
+<rect x="730" y="405" width="330" height="165" rx="6" fill="#202c19" stroke="#809263"/>
+<text x="895.0" y="437" font-family="Arial, sans-serif" font-size="20" fill="#d3f79c" text-anchor="middle" font-weight="700">Late Rent Ledger</text>
+<text x="752" y="463" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Overdue Balances</text>
+<text x="752" y="493" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Dynamic Fee Split</text>
+<text x="752" y="523" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Staff Audit Logs</text>
+<path d="M205 570V1235" stroke="#c7ed8a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<text x="45" y="1193" font-family="Arial, sans-serif" font-size="16" fill="#c7ed8a" text-anchor="start" font-weight="400">Real-Time Task Sync</text>
+<path d="M550 570V690" stroke="#c7ed8a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<text x="575" y="645" font-family="Arial, sans-serif" font-size="16" fill="#c7ed8a" text-anchor="start" font-weight="400">1-Click Document Dispatch</text>
+<rect x="430" y="690" width="650" height="240" rx="6" fill="#202c19" stroke="#809263"/>
+<text x="755.0" y="722" font-family="Arial, sans-serif" font-size="20" fill="#d3f79c" text-anchor="middle" font-weight="700">DIGITAL CONTRACT LIFECYCLE</text>
+<text x="755.0" y="748" font-family="Arial, sans-serif" font-size="18" fill="#d6e1c8" text-anchor="middle" font-weight="400">(PandaDoc)</text>
+<text x="452" y="784" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• State-Specific Legal Template Router</text>
+<text x="452" y="814" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Multi-Signer Routing (Tenants + Landlord)</text>
+<text x="452" y="844" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Dynamic Terms, Deposits &amp; Pet Clauses</text>
+<text x="452" y="874" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Real-Time Signature Tracking</text>
+<path d="M755 930V1010" stroke="#c7ed8a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<text x="780" y="974" font-family="Arial, sans-serif" font-size="16" fill="#c7ed8a" text-anchor="start" font-weight="400">Executed PDF Archival</text>
+<rect x="430" y="1010" width="650" height="180" rx="6" fill="#202c19" stroke="#809263"/>
+<text x="755.0" y="1042" font-family="Arial, sans-serif" font-size="20" fill="#d3f79c" text-anchor="middle" font-weight="700">STRUCTURED CLOUD STORAGE</text>
+<text x="755.0" y="1068" font-family="Arial, sans-serif" font-size="18" fill="#d6e1c8" text-anchor="middle" font-weight="400">(Google Drive)</text>
+<text x="452" y="1104" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Automated Year/Property Folder Hierarchy</text>
+<text x="452" y="1134" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Centralized Signed PDF Vault</text>
+<text x="452" y="1164" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Direct 1-Click Access Links Stamped in Sheet</text>
+<path d="M755 1190V1235" stroke="#c7ed8a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<text x="780" y="1219" font-family="Arial, sans-serif" font-size="16" fill="#c7ed8a" text-anchor="start" font-weight="400">Cloud File Link Attached</text>
+<rect x="20" y="1235" width="1060" height="275" rx="6" fill="#202c19" stroke="#809263"/>
+<text x="550.0" y="1267" font-family="Arial, sans-serif" font-size="20" fill="#d3f79c" text-anchor="middle" font-weight="700">PROJECT MANAGEMENT &amp; TEAM WORKFLOW</text>
+<text x="550.0" y="1293" font-family="Arial, sans-serif" font-size="18" fill="#d6e1c8" text-anchor="middle" font-weight="400">(Jira Kanban)</text>
+<text x="42" y="1329" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Visual Unit Pipeline: Vacant ➔ Renovation ➔ In Eviction ➔ Rented</text>
+<text x="42" y="1359" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Auto-Prioritization: Lease expiration math dynamically sets card urgency</text>
+<text x="42" y="1389" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Maintenance Triage: Auto-creates tasks with tenant details &amp; issue photos</text>
+<text x="42" y="1419" font-family="Arial, sans-serif" font-size="18" fill="#e6edde" text-anchor="start" font-weight="400">• Complete Context: Card displays rent, resident phone/email, and signed lease</text>
+</svg>

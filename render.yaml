@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: aditya-b-portfolio
+    name: aditya-ai-portfolio
     runtime: static
     buildCommand: echo "Static files are ready"
     staticPublishPath: ./dist
@@ -23,6 +23,7 @@ services:
           font-src 'self' https://fonts.gstatic.com;
           img-src 'self' data:;
           connect-src 'none';
+          frame-src https://script.google.com https://*.googleusercontent.com;
           object-src 'none';
           base-uri 'none';
           form-action 'none';

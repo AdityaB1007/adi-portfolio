@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base target="_blank">
+<style>
+:root{color-scheme:dark;font-family:Arial,sans-serif;background:#1d2318;color:#f0f0e7}
+*{box-sizing:border-box}body{margin:0;padding:18px}p{font-size:13px;line-height:1.75;color:#bcc9ae}
+h1{font-size:25px;letter-spacing:-.04em;margin:0 0 14px}
+label{display:block;font-size:13px;color:#d1ddc4;margin-top:16px}
+input,select,textarea{box-sizing:border-box;display:block;width:100%;font:16px/1.5 Arial,sans-serif;color:#edf4e5;background:#141c0f;border:1px solid #5e744a;border-radius:4px;padding:10px;margin-top:7px}
+textarea{resize:vertical;min-height:110px}button{display:inline-flex;align-items:center;gap:14px;min-height:46px;font:600 14px Arial,sans-serif;background:#d2f790;border:0;border-radius:4px;color:#182610;padding:12px 18px;cursor:pointer;margin-top:20px}
+button:disabled{opacity:.55;cursor:wait}a{color:#d2f790;overflow-wrap:anywhere}
+:focus-visible{outline:2px solid #d2f790;outline-offset:3px}
+.trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+#brief-status{white-space:pre-wrap;overflow-wrap:anywhere;min-height:24px}
+.note{font-size:11px}.identity{font-size:22px;font-weight:bold;margin-bottom:16px}.identity span{color:#d2f790;font-weight:400}
+.brief-preview{margin:22px 0 8px;border-block:1px solid #4f6140;padding:12px 0}
+.brief-preview summary{cursor:pointer;color:#d2f790;min-height:32px;font-size:13px;display:list-item}
+.brief-preview pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.8 Arial,sans-serif;color:#d4e0c7;background:#141c0f;padding:16px;border-radius:4px;margin:12px 0 0}
+.brief-contact-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:440px){.brief-contact-fields{grid-template-columns:1fr;gap:0}body{padding:10px}}
+</style>
+</head>
+<body>
+<div class="identity">adi<span>/</span></div>
+<h1>Create a project brief.</h1>
+<p>Tell me what you’re working on. I’ll receive your brief directly when you send it.</p>
+<form id="brief-form">
+<label>Your project or company<input name="company" minlength="2" maxlength="120" placeholder="What are you working on?" required></label>
+<label>What would you like help with?<select name="service"><option>Workflow integrations &amp; automation</option><option>Agentic AI &amp; knowledge assistants</option><option>Machine learning &amp; prediction</option><option>Data science &amp; explainability</option><option>Let’s figure it out together</option></select></label>
+<label>The problem to solve<textarea name="problem" rows="3" minlength="40" maxlength="4000" required placeholder="Current workflow, available data, and the outcome you want…"></textarea></label>
+<label>Timeline, if you have one<input name="timeline" maxlength="120" placeholder="e.g. A prototype in the next month"></label>
+<details class="brief-preview"><summary>Preview your project brief</summary><pre id="brief-preview-text"></pre></details>
+<div class="brief-contact-fields"><label>Your name<input name="name" minlength="2" maxlength="120" autocomplete="name" placeholder="How should I address you?" required></label><label>Your email<input name="email" type="email" maxlength="254" autocomplete="email" placeholder="So I can get back to you" required></label></div>
+<div class="trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<p class="note" id="brief-privacy">Your brief, submission time, and a pseudonymous browser identifier are stored in a private Google Sheet, including flagged or irrelevant submissions, for review and troubleshooting. Relevant enquiries can notify Aditya by email. Google processes this form. Please avoid confidential or sensitive information.</p>
+<button id="send-brief" type="submit" disabled>Send brief <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>
+<p id="brief-status" role="status" aria-live="polite"></p>
+<p><a href="mailto:<?= contactEmail ?>">Or email <?= contactEmail ?></a></p>
+</form>
+<script>
+'use strict';
+(() => {
+const form = document.querySelector('#brief-form');
+if (!form) return;
+const button = document.querySelector('#send-brief');
+const status = document.querySelector('#brief-status');
+const token = '<?= formToken ?>';
+const connected = typeof google !== 'undefined' && !!google.script && !!google.script.run;
+const preview = document.querySelector('#brief-preview-text');
+function updatePreview() {
+  const fields = Object.fromEntries(new FormData(form));
+  preview.textContent = `Hi Aditya, I'd like to discuss a project.\n\nProject / company: ${fields.company.trim() || '[Your project or company]'}\nArea: ${fields.service}\n\nProblem and desired outcome:\n${fields.problem.trim() || '[The problem you want to solve]'}\n\nTimeline: ${fields.timeline.trim() || 'Open to discussion'}\n`;
+}
+form.addEventListener('input', updatePreview);
+form.addEventListener('change', updatePreview);
+updatePreview();
+button.disabled = !connected;
+if (!connected) {
+  button.disabled = true;
+  button.setAttribute('aria-describedby', 'brief-status');
+  status.textContent = 'Direct sending is not connected yet. You can prepare a brief here, or email Aditya below.';
+  document.querySelector('#brief-privacy').textContent = 'This draft stays in your browser and is not submitted or saved. Please avoid confidential information.';
+}
+let requestId = '';
+let previousPayload = '';
+let sending = false;
+let browserId;
+function randomId() {
+  return typeof crypto.randomUUID === 'function' ? crypto.randomUUID() :
+    Array.from(crypto.getRandomValues(new Uint8Array(16)), value => value.toString(16).padStart(2,'0')).join('');
+}
+try {
+  browserId = localStorage.getItem('portfolio-brief-browser') || randomId();
+  localStorage.setItem('portfolio-brief-browser', browserId);
+} catch (error) {
+  browserId = randomId();
+}
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  if (!connected || sending || !form.reportValidity()) return;
+  const fields = Object.fromEntries(new FormData(form));
+  const payload = JSON.stringify(fields);
+  if (payload !== previousPayload) {
+    requestId = randomId();
+    previousPayload = payload;
+  }
+  sending = true;
+  button.disabled = true;
+  status.textContent = 'Sending your brief…';
+  google.script.run
+    .withSuccessHandler(result => {
+      sending = false;
+      button.disabled = false;
+      if (!result || result.received !== true) {
+        status.textContent = 'Receipt could not be confirmed. Please retry or email Aditya directly.';
+        return;
+      }
+      status.textContent = 'Your brief was received and saved for review. Reference: ' + result.reference;
+      form.reset();
+      updatePreview();
+      previousPayload = '';
+      requestId = '';
+    })
+    .withFailureHandler(() => {
+      sending = false;
+      button.disabled = false;
+      status.textContent = 'Receipt could not be confirmed. Your entries are still here. Retry with this form, or email Aditya directly.';
+    })
+    .submitBrief({ ...fields, requestId, browserId, token });
+});
+})();
+</script>
+</body>
+</html>

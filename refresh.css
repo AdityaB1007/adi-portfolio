@@ -263,8 +263,8 @@ a, button, summary { touch-action: manipulation; }
 .expertise-section .service-list,.expertise-section .service{border-color:#b3c59f}
 .brief-field-hint{font-size:12px!important;line-height:1.6!important;color:#b8c9a6!important;margin:6px 0 0!important}
 
-/* A single project-brief action also states where the message goes. */
-.contact-actions{max-width:100%}
-.contact-actions #open-brief{max-width:100%;min-width:0;padding:12px 16px;border:1px solid #6b8550;border-radius:4px;gap:16px;text-align:left;line-height:1.5;font-size:13px}
-#open-brief .brief-cta-label{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
-#open-brief .brief-cta-label small{display:block;font-size:11px;font-weight:400;color:#4c6336;overflow-wrap:anywhere}
+/* Matching contact buttons, with the destination as supporting text. */
+.contact-actions{max-width:100%;align-items:flex-start}
+.contact-brief-action{width:240px;max-width:100%;min-width:0}
+.contact-actions>.button,.contact-brief-action>.button{width:240px;max-width:100%;min-height:48px}
+.contact-brief-action>small{display:block;margin-top:8px;font-size:11px;line-height:1.6;color:#4c6336;overflow-wrap:anywhere}

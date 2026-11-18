@@ -262,10 +262,10 @@ function renderProject(project) {
     <section class="case-section"><h3>The brief and the constraint</h3><p>${escapeHtml(project.constraint)}</p></section>
     <section class="case-section"><h3>How the system works</h3><p>${escapeHtml(project.approach)}</p></section>
     ${project.architecture ? `<details class="case-architecture-disclosure"><summary>Explore the full architecture</summary>${project.architecture}</details>` : ''}
-    <section class="case-section"><h3>Decisions and tradeoffs</h3>${decisions}</section>
+    <details class="case-section case-extra"><summary>Decisions and tradeoffs</summary>${decisions}</details>
     ${workstreams ? `<section class="case-section"><h3>Inside the workflows</h3>${workstreams}</section>` : ''}
     <section class="case-section"><h3>Results and evaluation</h3><p>${escapeHtml(project.evaluation)}</p></section>
-    <section class="case-section"><h3>What the design taught me</h3><p>${escapeHtml(project.reflection)}</p></section>
+    <details class="case-section case-extra"><summary>What the design taught me</summary><p>${escapeHtml(project.reflection)}</p></details>
     <div class="tags">${project.stack.map(tool => `<span>${escapeHtml(tool)}</span>`).join('')}</div>
     ${project.repo ? `<a class="button primary" href="${project.repo}">Explore the source ${icon('arrow')}</a>` : ''}
   `;

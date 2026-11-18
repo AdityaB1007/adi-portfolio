@@ -4,7 +4,7 @@
 // that data; these are sample records explaining real professional projects.
 const workflowExamples = {
   property: {
-    context: 'Follow an approved application from ERP records to a signed lease the team can find.',
+    context: 'Approved applicants become signed, archived leases—with the links returned to the team.',
     target: 'real-estate',
     stages: [
       {
@@ -40,7 +40,7 @@ const workflowExamples = {
     ]
   },
   sales: {
-    context: 'From buyer discovery to a researched licensing pitch, with a person deciding what gets sent.',
+    context: 'Buyer research becomes a relevant licensing pitch, ready for human review.',
     target: 'outreach-project',
     stages: [
       {
@@ -136,6 +136,7 @@ function showStep(index, announce = true) {
   const stages = workflowExamples[currentExample].stages;
   if (!Number.isInteger(index) || index < 0 || index >= stages.length) return;
   currentStep = index;
+  demoRoot.querySelector('.demo-decision').open = false;
   const stage = stages[index];
   stageList.querySelectorAll('button').forEach((button, position) => {
     button.setAttribute('aria-pressed', String(position === index));
@@ -160,6 +161,8 @@ function selectExample(key, announce = true) {
   currentExample = key;
   demoButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.demo === key)));
   demoRoot.querySelector('#demo-context').textContent = example.context;
+  demoRoot.querySelector('#demo-tour-label').textContent = `Walk through ${example.stages.length} stages`;
+  demoRoot.querySelector('.demo-decision').open = false;
   const steps = example.stages.map((stage, index) => {
     const item = makeElement('li');
     const button = makeElement('button');
